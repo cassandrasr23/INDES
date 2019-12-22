@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Exerc1INDES
 {
-    class Pista : System.Windows.Forms.Panel
+    public class Pista : System.Windows.Forms.Panel
     {
 
         private Cavalo cavalo;
@@ -64,6 +64,7 @@ namespace Exerc1INDES
 
         public void next()
         {
+            cavalo.loseVitalidade();
             int X = pcb_cavalo.Location.X;
             int Y = pcb_cavalo.Location.Y;
             X += length * cavalo.getSpeedCurrent() / 10000;
@@ -115,7 +116,9 @@ namespace Exerc1INDES
             string infoCavalo = "Nome do Cavalo :\t\t\t" + cavalo.ToString() + "\n";
             infoCavalo += "Velocidade initiale do Cavalo :\t" + cavalo.getSpeedInit() + "\n";
             infoCavalo += "Velocidade corrente do Cavalo :\t" + cavalo.getSpeedCurrent() + "\n";
-            infoCavalo += "Valocidade finale do Cavalo :\t" + cavalo.getSpeedFinish() + "\n";
+            infoCavalo += "Velocidade finale do Cavalo :\t" + cavalo.getSpeedFinish() + "\n";
+            infoCavalo += "Vitalidade do Cavalo :\t\t" + cavalo.getVitalidadeMax() + "\n";
+            infoCavalo += "Saude do Cavalo :\t\t\t" + cavalo.getSaude() + "\n";
 
             MessageBox.Show(infoCavalo, "informação do cavalo");
         }

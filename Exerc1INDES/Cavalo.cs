@@ -6,23 +6,37 @@ using System.Threading.Tasks;
 
 namespace Exerc1INDES
 {
-    class Cavalo
+    public class Cavalo
     {
+        private const int SPEED_CANSADO = 2;
+        private const int MIN_VOLTA_CANSADO = 5;
+        private const int MAX_VOLTA_CANSADO = 20;
+
         private int speedInit;
         private int speedCurrent;
         private int speedFinish;
+        private int saude;
+        private int vitalidade;
+        private int vitalidadeMax;
+        private int voltaCansado;
+        private int recupVitalidade;
+        private int voltaComCansasoMax;
         private string nomeCavalo;
-        private static Random random;
+        private Random random;
 
-        public Cavalo(int SInit, int SCurrent, int SFinish)
+        public Cavalo(string nome, int SInit, int SCurrent, int SFinish, int saude, int vitalidade)
         {
+            nomeCavalo = nome;
             speedInit = SInit;
             speedCurrent = SCurrent;
             speedFinish = SFinish;
-
+            this.saude = saude;
+            vitalidadeMax = vitalidade;
+            this.vitalidade = vitalidadeMax;
+            voltaCansado = 0;
+            recupVitalidade = 1;
             random = new Random();
-
-            createName();
+            voltaComCansasoMax = random.Next(MIN_VOLTA_CANSADO, MAX_VOLTA_CANSADO);
         }
 
         public int getSpeedInit()
@@ -32,44 +46,54 @@ namespace Exerc1INDES
 
         public int getSpeedCurrent()
         {
-            return speedCurrent;
+            recuperacaoVitalidade();
+            return vitalidade <= 0 ? speedCurrent / SPEED_CANSADO : speedCurrent;
         }
         public int getSpeedFinish()
         {
-            return speedFinish;
+            recuperacaoVitalidade();
+            return vitalidade <= 0 ? speedFinish / SPEED_CANSADO : speedFinish;
+        }
+
+        private void recuperacaoVitalidade()
+        {
+            if(vitalidade <= 0)
+            {
+                voltaCansado++;
+                if (voltaCansado == voltaComCansasoMax)
+                {
+                    vitalidade = vitalidadeMax / recupVitalidade;
+                    recupVitalidade *= 2;
+                    voltaCansado = 0;
+                    voltaComCansasoMax = random.Next(MIN_VOLTA_CANSADO, MAX_VOLTA_CANSADO);
+                }
+            }
+        }
+
+        public int getSaude()
+        {
+            return saude;
+        }
+
+        public int getVitalidadeMax()
+        {
+            return vitalidadeMax;
+        }
+
+        public int getVitalidadeCurrent()
+        {
+            return vitalidade;
+        }
+
+        public void loseVitalidade()
+        {
+            vitalidade -= speedCurrent / saude;
         }
 
         override
         public string ToString()
         {
             return nomeCavalo;
-        }
-
-        private void createName()
-        {
-            //lettre autorisé pour la génération d'un nom aléatoire
-            String letraMaiuscula = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            String consoante = "bcdfghjklmnpqrstvwxz";
-            String vogais = "aeiouy";
-
-            int numeroLetra = random.Next(1, 10);
-
-            // la première lettre doit toujours être une majuscule
-            int j =  random.Next(0,letraMaiuscula.Length - 1);
-            nomeCavalo += letraMaiuscula.ElementAt(j);
-
-            // completer le nom en alternant voyelle et consonne
-            for (int i = 0; i < numeroLetra; i = i + 2)
-            {
-                j = random.Next(0, vogais.Length - 1);
-                nomeCavalo += vogais.ElementAt(j);
-
-                if (i + 1 < numeroLetra)
-                {
-                    j = random.Next(0, consoante.Length - 1);
-                    nomeCavalo += consoante.ElementAt(j);
-                }
-            }
         }
     }
 }

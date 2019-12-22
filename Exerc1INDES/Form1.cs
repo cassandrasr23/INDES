@@ -19,6 +19,9 @@ namespace Exerc1INDES
         private const int SPEED_MAX_CURRENT = 100;
         private const int SPEED_MIN_FINISH = 60;
         private const int SPEED_MAX_FINISH = 120;
+        private const int SOMA_SPEED_MAX = SPEED_MAX_INIT + SPEED_MAX_CURRENT + SPEED_MAX_FINISH; // permite calcular a vitalidade inversa ao sua velocidade
+        private const int SAUDE_MIN = 1; // pior
+        private const int SAUDE_MAX = 10; // melhor
         private const string NUMERO_CORRIDA_INICIO = "A corrida numero ";
         private const string NUMERO_CORRIDA_FIM = " vai comecar daqui um poco.";
         private const string NUMERO_CORRIDA_PENDANTE = " esta em progresso.";
@@ -33,7 +36,7 @@ namespace Exerc1INDES
         private bool[] jogadoreExist;
         private const int maxPlayer = 5;
 
-        private LinkedList<Pista> pistas;
+        private static List<Pista> pistas = new List<Pista>();
         private Random random;
         private int numeroCorrida;
         private int startEndRace;
@@ -46,7 +49,6 @@ namespace Exerc1INDES
         {
             InitializeComponent();
             random = new Random();
-            pistas = new LinkedList<Pista>();
             cavalosVencedores = new LinkedList<Pista>();
             jogadoreExist = new bool[maxPlayer];
             apostaJogadores = new ApostaJogadore[maxPlayer];
@@ -96,41 +98,78 @@ namespace Exerc1INDES
                 int speedInit = random.Next(SPEED_MIN_INIT, SPEED_MAX_INIT);
                 int speedCurrent = random.Next(SPEED_MIN_CURRENT, SPEED_MAX_CURRENT);
                 int speedFinish = random.Next(SPEED_MIN_FINISH, SPEED_MAX_FINISH);
+                int saude = random.Next(SAUDE_MIN, SAUDE_MAX);
+                int minVitalidade = (SOMA_SPEED_MAX * 2 - speedInit - speedCurrent - speedFinish);
+                int maxVitalidade = (SOMA_SPEED_MAX * 2 - speedInit - speedCurrent - speedFinish) * 3;
+                int vitalidade = random.Next(minVitalidade, maxVitalidade);
                 Cavalo cavalo;
+                String nomeCavalo;
                 Boolean isSimilarName;
                 do
                 {
-                    cavalo = new Cavalo(speedInit, speedCurrent, speedFinish);
+                    nomeCavalo = createName();
                     isSimilarName = false;
 
                     for (int j = 0; j < pistas.Count(); j++)
                     {
-                        if (cavalo.ToString().Equals(pistas.ElementAt(j).getCavalo().ToString()))
+                        if (nomeCavalo.Equals(pistas.ElementAt(j).getCavalo().ToString()))
                         {
                             isSimilarName = true;
                             break;
                         }   
                     }
                 } while (isSimilarName);
+
+                cavalo = new Cavalo(nomeCavalo, speedInit, speedCurrent, speedFinish, saude, vitalidade);
                 Pista pista = new Pista(cavalo, lengthPista * i, lengthPanelRace, lengthPista);
-                pistas.AddLast(pista);
+                pistas.Add(pista);
                 if(i % 2 == 0)
                 {
                     pista.BackgroundImage = global::Exerc1INDES.Properties.Resources.relvaClara;
-                    pista.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
                 }
                 else
                 {
                     pista.BackgroundImage = global::Exerc1INDES.Properties.Resources.relvaEscura;
-                    pista.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
                 }
+                pista.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
                 pnl_corrida.Controls.Add(pista);
-                for(int j = 0; j < maxPlayer; j++)
+
+                for (int j = 0; j < maxPlayer; j++)
                 {
                     if (jogadoreExist[j])
                         apostaJogadores[j].addCavalo(cavalo.ToString());
                 }
             }
+        }
+
+        private String createName()
+        {
+            //lettre autorisé pour la génération d'un nom aléatoire
+            String letraMaiuscula = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            String consoante = "bcdfghjklmnpqrstvwxz";
+            String vogais = "aeiouy";
+
+            random = new Random();
+            int numeroLetra = random.Next(1, 10);
+
+            // la première lettre doit toujours être une majuscule
+            int j = random.Next(0, letraMaiuscula.Length - 1);
+            String nome = "" + letraMaiuscula.ElementAt(j);
+
+            // completer le nom en alternant voyelle et consonne
+            for (int i = 0; i < numeroLetra; i = i + 2)
+            {
+                j = random.Next(0, vogais.Length - 1);
+                nome += vogais.ElementAt(j);
+
+                if (i + 1 < numeroLetra)
+                {
+                    j = random.Next(0, consoante.Length - 1);
+                    nome += consoante.ElementAt(j);
+                }
+            }
+
+            return nome;
         }
 
         private void inRace()
@@ -237,8 +276,19 @@ namespace Exerc1INDES
         {
             // perde a aposta
             for (int i = 0; i < maxPlayer; i++)
-                if(jogadoreExist[i])
+            {
+                if (jogadoreExist[i])
+                {
                     apostaJogadores[i].perdeAposta();
+                    apostaJogadores[i].Enabled = false;
+                }
+                else
+                {
+                    adicionarJogadore[i].Enabled = false;
+                }
+            }
+
+            btn_Run.Enabled = false;
             lbl_numeroCorrida.Text = NUMERO_CORRIDA_INICIO + numeroCorrida + NUMERO_CORRIDA_PENDANTE;
             timer.Start();
         }
@@ -251,7 +301,10 @@ namespace Exerc1INDES
 
         private void Btn_info_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Regras do jogo");
+            InformacaoCavalo ic = new InformacaoCavalo();
+            ic.ShowDialog();
+            //ic.Show();
+            //MessageBox.Show("Regras do jogo");
         }
 
         private void Btn_creditos_Click(object sender, EventArgs e)
@@ -287,6 +340,7 @@ namespace Exerc1INDES
                 {
                     jogadoreExist[i] = false;
                     MessageBox.Show(apostaJogadores[i].getNomeJogadore() + " entrou em bankroute", "Um jogadore saiu do jogo");
+                    apostaJogadores[i] = null;
                 }
             }
         }
@@ -295,6 +349,7 @@ namespace Exerc1INDES
         {
             gbx_aposta.Controls.Clear();
             gbx_aposta.Controls.Add(this.btn_Run);
+            btn_Run.Enabled = true;
             btn_Run.Select();
 
             for (int i = 0; i < maxPlayer; i++)
@@ -306,6 +361,7 @@ namespace Exerc1INDES
                     apostaJogadores[i].Location = new System.Drawing.Point(X, LOCATION_Y_APOSTA_JOGADOR);
                     apostaJogadores[i].Width = WIDTH_PANEL_APOSTA_JOGADOR;
                     apostaJogadores[i].Height = HEIGTH_PANEL_APOSTA_JOGADOR;
+                    apostaJogadores[i].Enabled = true;
                     gbx_aposta.Controls.Add(apostaJogadores[i]);
                 }
                 else
@@ -313,9 +369,15 @@ namespace Exerc1INDES
                     adicionarJogadore[i].Location = new System.Drawing.Point(X, LOCATION_Y_APOSTA_JOGADOR);
                     adicionarJogadore[i].Width = WIDTH_PANEL_APOSTA_JOGADOR;
                     adicionarJogadore[i].Height = HEIGTH_PANEL_APOSTA_JOGADOR;
+                    adicionarJogadore[i].Enabled = true;
                     gbx_aposta.Controls.Add(adicionarJogadore[i]);
                 }
             }
+        }
+
+        public static List<Pista> getPista()
+        {
+            return pistas;
         }
     }
 }

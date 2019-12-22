@@ -11,3 +11,15 @@ C:\Users\kassa\source\repos\Exerc1INDES\Exerc1INDES\obj\Debug\Exerc1INDES.HorseR
 C:\Users\kassa\source\repos\Exerc1INDES\Exerc1INDES\bin\Debug\Bunifu_UI_v1.5.3.dll
 C:\Users\kassa\source\repos\Exerc1INDES\Exerc1INDES\obj\Debug\Exerc1INDES.csproj.CopyComplete
 C:\Users\kassa\source\repos\Exerc1INDES\Exerc1INDES\obj\Debug\Exerc1INDES.InputDialog.resources
+D:\ISEP\INDES\Exerc1INDES\bin\Debug\Exerc1INDES.exe.config
+D:\ISEP\INDES\Exerc1INDES\bin\Debug\Exerc1INDES.exe
+D:\ISEP\INDES\Exerc1INDES\bin\Debug\Exerc1INDES.pdb
+D:\ISEP\INDES\Exerc1INDES\obj\Debug\Exerc1INDES.csprojAssemblyReference.cache
+D:\ISEP\INDES\Exerc1INDES\obj\Debug\Exerc1INDES.HorseRice.resources
+D:\ISEP\INDES\Exerc1INDES\obj\Debug\Exerc1INDES.InputDialog.resources
+D:\ISEP\INDES\Exerc1INDES\obj\Debug\Exerc1INDES.Properties.Resources.resources
+D:\ISEP\INDES\Exerc1INDES\obj\Debug\Exerc1INDES.csproj.GenerateResource.cache
+D:\ISEP\INDES\Exerc1INDES\obj\Debug\Exerc1INDES.csproj.CopyComplete
+D:\ISEP\INDES\Exerc1INDES\obj\Debug\Exerc1INDES.exe
+D:\ISEP\INDES\Exerc1INDES\obj\Debug\Exerc1INDES.pdb
+D:\ISEP\INDES\Exerc1INDES\obj\Debug\Exerc1INDES.InformacaoCavalo.resources

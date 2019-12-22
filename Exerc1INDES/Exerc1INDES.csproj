@@ -52,6 +52,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cavalo.cs" />
+    <Compile Include="InformacaoCavalo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InformacaoCavalo.Designer.cs">
+      <DependentUpon>InformacaoCavalo.cs</DependentUpon>
+    </Compile>
     <Compile Include="InputDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,6 +81,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InformacaoCavalo.resx">
+      <DependentUpon>InformacaoCavalo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InputDialog.resx">
       <DependentUpon>InputDialog.cs</DependentUpon>

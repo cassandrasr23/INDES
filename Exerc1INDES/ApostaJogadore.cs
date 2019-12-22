@@ -149,6 +149,7 @@ namespace Exerc1INDES
         {
             if(cbx_cavalo.Text != "")
                 jogadore.addMoney(getValorAposta() * -1);
+            lbl_dineiro.Text = VALOR_TOTAL + jogadore.getValue();
         }
 
         public bool isBankroute()
