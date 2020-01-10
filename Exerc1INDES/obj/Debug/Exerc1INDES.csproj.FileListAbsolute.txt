@@ -23,3 +23,16 @@ D:\ISEP\INDES\Exerc1INDES\obj\Debug\Exerc1INDES.csproj.CopyComplete
 D:\ISEP\INDES\Exerc1INDES\obj\Debug\Exerc1INDES.exe
 D:\ISEP\INDES\Exerc1INDES\obj\Debug\Exerc1INDES.pdb
 D:\ISEP\INDES\Exerc1INDES\obj\Debug\Exerc1INDES.InformacaoCavalo.resources
+C:\Users\kassa\Documents\indes2\Exerc1INDES\bin\Debug\Exerc1INDES.exe.config
+C:\Users\kassa\Documents\indes2\Exerc1INDES\bin\Debug\Exerc1INDES.exe
+C:\Users\kassa\Documents\indes2\Exerc1INDES\bin\Debug\Exerc1INDES.pdb
+C:\Users\kassa\Documents\indes2\Exerc1INDES\obj\Debug\Exerc1INDES.csprojAssemblyReference.cache
+C:\Users\kassa\Documents\indes2\Exerc1INDES\obj\Debug\Exerc1INDES.HorseRice.resources
+C:\Users\kassa\Documents\indes2\Exerc1INDES\obj\Debug\Exerc1INDES.InformacaoCavalo.resources
+C:\Users\kassa\Documents\indes2\Exerc1INDES\obj\Debug\Exerc1INDES.InputDialog.resources
+C:\Users\kassa\Documents\indes2\Exerc1INDES\obj\Debug\Exerc1INDES.Properties.Resources.resources
+C:\Users\kassa\Documents\indes2\Exerc1INDES\obj\Debug\Exerc1INDES.csproj.GenerateResource.cache
+C:\Users\kassa\Documents\indes2\Exerc1INDES\obj\Debug\Exerc1INDES.csproj.CoreCompileInputs.cache
+C:\Users\kassa\Documents\indes2\Exerc1INDES\obj\Debug\Exerc1INDES.csproj.CopyComplete
+C:\Users\kassa\Documents\indes2\Exerc1INDES\obj\Debug\Exerc1INDES.exe
+C:\Users\kassa\Documents\indes2\Exerc1INDES\obj\Debug\Exerc1INDES.pdb

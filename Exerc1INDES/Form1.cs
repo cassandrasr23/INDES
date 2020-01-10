@@ -309,7 +309,7 @@ namespace Exerc1INDES
 
         private void Btn_creditos_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Este trabalho foi realizado por \nAlexandre Marques nº1190200 \nCassandra Ranginha nº1191184 \nDaniel nº ");
+            MessageBox.Show("Este trabalho foi realizado por \nAlexandre Marques nº1190200 \nCassandra Ranginha nº1191184 \nDaniel Silva nº1182172 ");
         }
 
         private void adicionarJ(object sender, EventArgs e)

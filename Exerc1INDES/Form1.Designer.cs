@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HorseRice));
             this.gbx_aposta = new System.Windows.Forms.GroupBox();
             this.btn_Run = new System.Windows.Forms.Button();
             this.btn_info = new System.Windows.Forms.Button();
@@ -51,9 +52,10 @@
             // 
             // btn_Run
             // 
+            this.btn_Run.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Run.Location = new System.Drawing.Point(1241, 19);
             this.btn_Run.Name = "btn_Run";
-            this.btn_Run.Size = new System.Drawing.Size(113, 171);
+            this.btn_Run.Size = new System.Drawing.Size(113, 237);
             this.btn_Run.TabIndex = 0;
             this.btn_Run.Text = "RUN!";
             this.btn_Run.UseVisualStyleBackColor = true;
@@ -91,9 +93,11 @@
             // lbl_numeroCorrida
             // 
             this.lbl_numeroCorrida.AutoSize = true;
-            this.lbl_numeroCorrida.Location = new System.Drawing.Point(12, 17);
+            this.lbl_numeroCorrida.BackColor = System.Drawing.Color.Transparent;
+            this.lbl_numeroCorrida.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_numeroCorrida.Location = new System.Drawing.Point(49, 61);
             this.lbl_numeroCorrida.Name = "lbl_numeroCorrida";
-            this.lbl_numeroCorrida.Size = new System.Drawing.Size(28, 13);
+            this.lbl_numeroCorrida.Size = new System.Drawing.Size(58, 25);
             this.lbl_numeroCorrida.TabIndex = 5;
             this.lbl_numeroCorrida.Text = "todo";
             // 
@@ -107,6 +111,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1384, 851);
             this.Controls.Add(this.lbl_numeroCorrida);
             this.Controls.Add(this.pnl_corrida);
